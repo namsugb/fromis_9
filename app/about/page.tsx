@@ -68,9 +68,9 @@ export default function About() {
                     <Image
                         src={selectedMember.image}
                         alt={selectedMember.name}
-                        fill
                         className="object-contain rounded-2xl"
                         priority
+                        height={700} width={500}
                     />
                 </div>
             </div>

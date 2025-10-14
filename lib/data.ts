@@ -22,7 +22,7 @@ export const DATA = {
     "6": {
         "name": "우리 바보 아니야",
         "url": "https://www.youtube.com/@%EC%9A%B0%EB%A6%AC%EB%B0%94%EB%B3%B4%EC%95%84%EB%8B%88%EC%95%BC/",
-        "image": "/youtube/6.png",
+        "image": "/youtube/66.png",
     },
     "4": {
         "name": "기프나 슬프나",
