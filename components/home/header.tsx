@@ -1,17 +1,18 @@
 "use client";
 
-import { Youtube, Instagram, Twitter, Menu } from "lucide-react";
+import { Youtube, Instagram, Menu, LogIn, LogOut } from "lucide-react";
 import { useState } from "react";
 import Sidebar from "./sidebar";
 import Link from "next/link";
+import { useAuth } from "@/lib/contexts/AuthContext";
 
 export default function Header() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { user, loading, signIn, signOut } = useAuth();
 
     const handleMenuHover = () => {
         setIsSidebarOpen(true);
     };
-
 
     const closeSidebar = () => {
         setIsSidebarOpen(false);
@@ -20,22 +21,45 @@ export default function Header() {
     return (
         <>
             <div className="w-full h-16 bg-transparent absolute top-0 left-0 z-50 px-16">
-                <div className="w-full h-full flex justify-between items-center">
+                <div className="w-full h-full flex justify-between items-center text-gray-600">
                     <div className="w-1/2 h-full flex justify-start items-center">
                         <Link href="/">
-                            <h1 className="text-4xl font-bold font-stretch-50%">fromis9</h1>
+                            <h1 className="text-4xl font-bold font-stretch-50% hover:text-white transition-colors">fromis_9</h1>
                         </Link>
                     </div>
                     <div className="w-1/2 h-full flex justify-end items-center gap-8">
                         <Link href="https://www.youtube.com/@fromis9_official" target="_blank">
-                            <Youtube className="w-8 h-8 hover:text-red-500 transition-colors cursor-pointer" />
+                            <Youtube className="w-10 h-10 hover:text-red-500 transition-colors cursor-pointer" />
                         </Link>
-                        <Link href="https://www.instagram.com/fromis_9/" target="_blank">
+                        <Link href="https://www.instagram.com/officialfromis_9/" target="_blank">
                             <Instagram className="w-8 h-8 hover:text-pink-500 transition-colors cursor-pointer" />
                         </Link>
-                        <Link href="https://x.com/fromis9official" target="_blank">
-                            <Twitter className="w-8 h-8 hover:text-blue-500 transition-colors cursor-pointer" />
+                        <Link href="https://x.com/realfromis_9" target="_blank">
+                            <svg
+                                className="w-8 h-8 hover:text-black transition-colors cursor-pointer"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
                         </Link>
+
+
+                        {loading ? (
+                            <div className="w-8 h-8 flex items-center justify-center">
+                                <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+                            </div>
+                        ) : user ? (
+                            <button onClick={signOut} title="로그아웃">
+                                <LogOut className="w-8 h-8 hover:text-red-500 transition-colors cursor-pointer" />
+                            </button>
+                        ) : (
+                            <button onClick={signIn} title="로그인">
+                                <LogIn className="w-8 h-8 hover:text-purple-600 transition-colors cursor-pointer" />
+                            </button>
+                        )}
+
                         <div
                             className="relative"
                             onClick={handleMenuHover}

@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import Link from "next/link";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -31,58 +32,41 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                             onClick={onClose}
                             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                         >
-                            <X className="w-6 h-6" />
+                            <X className="w-6 h-6 text-black" />
                         </button>
                     </div>
 
                     {/* Menu Items */}
                     <nav className="space-y-4">
-                        <a
-                            href="#"
+                        <Link
+                            href="/"
                             className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
                             Home
-                        </a>
-                        <a
-                            href="#"
+                        </Link>
+                        <Link
+                            href="/about/"
                             className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
                             About
-                        </a>
-                        <a
-                            href="#"
+                        </Link>
+                        <Link
+                            href="/fantube/"
                             className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                            Music
-                        </a>
-                        <a
-                            href="#"
+                            Fantube
+                        </Link>
+                        <Link
+                            href="/discography/"
                             className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                            Videos
-                        </a>
-                        <a
-                            href="#"
-                            className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-                        >
-                            Gallery
-                        </a>
-                        <a
-                            href="#"
-                            className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-                        >
-                            News
-                        </a>
-                        <a
-                            href="#"
-                            className="block py-3 px-4 text-lg text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-                        >
-                            Contact
-                        </a>
+                            Discography
+                        </Link>
+
                     </nav>
 
                     {/* Social Links */}
-                    <div className="mt-8 pt-8 border-t border-gray-200">
+                    {/* <div className="mt-8 pt-8 border-t border-gray-200">
                         <h3 className="text-lg font-semibold text-gray-800 mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
                             <a href="#" className="p-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
@@ -101,7 +85,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 </svg>
                             </a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

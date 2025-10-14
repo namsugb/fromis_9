@@ -1,0 +1,11 @@
+{
+  "/about/page": "app/about/page.js",
+  "/auth/callback/route": "app/auth/callback/route.js",
+  "/chang/page": "app/chang/page.js",
+  "/discography/page": "app/discography/page.js",
+  "/fantube/page": "app/fantube/page.js",
+  "/hayeong/page": "app/hayeong/page.js",
+  "/heon/page": "app/heon/page.js",
+  "/nacco/page": "app/nacco/page.js",
+  "/page": "app/page.js"
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///C:/My_projects/services/fromis9/app/page.tsx"],"sourcesContent":["import Hero from \"../components/hero\";\n\n\nexport default function Home() {\n  return (\n    <div className=\"relative min-h-screen\">\n      <Hero />\n    </div>\n  )\n}"],"names":[],"mappings":";;;;;;;;;;;;AAGe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;;;;;;;;;;AAGP","debugId":null}}]
+}
