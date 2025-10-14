@@ -52,10 +52,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     const signOut = async () => {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-            console.error('Sign out error:', error);
-            alert('로그아웃에 실패했습니다.');
+        try {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error('Sign out error:', error);
+                // 에러가 있어도 로컬 상태는 초기화하고 페이지 새로고침
+                setUser(null);
+                // 로컬 스토리지 클리어
+                if (typeof window !== 'undefined') {
+                    localStorage.removeItem('supabase.auth.token');
+                    window.location.href = '/';
+                }
+            } else {
+                // 성공적으로 로그아웃
+                setUser(null);
+                if (typeof window !== 'undefined') {
+                    window.location.href = '/';
+                }
+            }
+        } catch (err) {
+            console.error('Sign out exception:', err);
+            // 예외가 발생해도 로컬 상태는 초기화하고 페이지 새로고침
+            setUser(null);
+            if (typeof window !== 'undefined') {
+                localStorage.clear();
+                window.location.href = '/';
+            }
         }
     };
 
