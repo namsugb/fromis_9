@@ -48,7 +48,7 @@ export default function About() {
         <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
             {/* 좌측 멤버 리스트 */}
             <div className="w-64 h-full flex flex-col justify-center items-end pr-4 space-y-6">
-                {members.map((member, index) => (
+                {members.map((member) => (
                     <button
                         key={member.name}
                         onClick={() => setSelectedMember(member)}

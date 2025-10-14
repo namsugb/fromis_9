@@ -3,16 +3,22 @@ import { Instagram, Youtube, ExternalLink, Users, Heart } from "lucide-react"
 import { DATA } from "@/lib/data"
 import { useState, useEffect } from "react"
 
+type YoutubeItem = {
+    name: string;
+    url: string;
+    image: string;
+};
+
 export default function Fantube() {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
-    const [youtube, setYoutube] = useState<any[]>([])
+    const [youtube, setYoutube] = useState<YoutubeItem[]>([])
 
 
 
     useEffect(() => {
         setLoading(true)
-        setYoutube(Object.values(DATA).slice((page - 1) * 6, page * 6))
+        setYoutube(Object.values(DATA).slice((page - 1) * 6, page * 6) as YoutubeItem[])
         setLoading(false)
     }, [page])
 
@@ -37,8 +43,8 @@ export default function Fantube() {
                 {/* 카드 그리드 */}
                 {loading ? <div className="text-center text-black">Loading...</div> : (
                     <div className="grid grid-cols-1 md:grid-cols-3  gap-6 text-black">
-                        {youtube.map((item) => (
-                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer">
+                        {youtube.map((item, index) => (
+                            <a key={index} href={item.url} target="_blank" rel="noopener noreferrer">
                                 <div className=" aspect-[16/9]">
                                     <img src={item.image} alt={item.name} className="w-full h-full object-fill rounded" />
                                     <div className="text-center text-black">{item.name}</div>

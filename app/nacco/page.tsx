@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chat from "@/components/common/chat";
-ㅁㅇimport { getComments, subscribeToComments, unsubscribeFromComments, addComment } from "@/lib/comments";
+import { getComments, subscribeToComments, unsubscribeFromComments } from "@/lib/comments";
 import { MEMBERS, Comment, supabase } from "@/lib/supabase/supabase";
 
 type ActiveComment = {
@@ -11,29 +11,27 @@ type ActiveComment = {
     text: string;
     x: number;
     y: number;
-    duration: number; // 유지 시간 (ms)
+    duration: number;
     username: string;
 };
 
-export default function Chang() {
+export default function Nacco() {
     const [activeComments, setActiveComments] = useState<ActiveComment[]>([]);
     const [comments, setComments] = useState<Comment[]>([]);
     const [subscription, setSubscription] = useState<ReturnType<typeof supabase.channel> | null>(null);
     const iRef = useRef(0);
 
-    // 👇 새 좌표 생성 (겹치지 않게)
     const getNonOverlappingPosition = (
         existing: ActiveComment[],
         maxAttempts = 20
     ) => {
-        const padding = 100; // 최소 거리 (px) — 댓글 크기 감안
+        const padding = 100;
         let attempt = 0;
 
         while (attempt < maxAttempts) {
             const x = Math.random() * window.innerWidth * 0.7;
-            const y = Math.random() * (window.innerHeight - 300) + 100; // 위아래 100px씩 여백
+            const y = Math.random() * (window.innerHeight - 300) + 100;
 
-            // 기존 댓글과의 거리 검사
             const overlap = existing.some((c) => {
                 const dx = c.x - x;
                 const dy = c.y - y;
@@ -46,14 +44,12 @@ export default function Chang() {
             attempt++;
         }
 
-        // 실패하면 그냥 랜덤 반환 (안 겹칠 확률이 높음)
         return {
             x: Math.random() * window.innerWidth * 0.7,
-            y: Math.random() * (window.innerHeight - 500) + 300, // 위아래 100px씩 여백
+            y: Math.random() * (window.innerHeight - 500) + 300,
         };
     };
 
-    // Supabase에서 댓글 로드
     useEffect(() => {
         const loadComments = async () => {
             const data = await getComments(MEMBERS.NACCO.name);
@@ -62,13 +58,11 @@ export default function Chang() {
         loadComments();
     }, []);
 
-    // 실시간 댓글 구독
     useEffect(() => {
         console.log('Setting up realtime subscription...');
         const sub = subscribeToComments(MEMBERS.NACCO.name, (newComment) => {
             console.log('Received new comment via subscription:', newComment);
             setComments(prev => {
-                // 중복 방지
                 const exists = prev.some(comment => comment.id === newComment.id);
                 if (exists) {
                     console.log('Comment already exists, skipping...');
@@ -86,7 +80,6 @@ export default function Chang() {
         };
     }, []);
 
-    // 댓글을 화면에 표시하는 로직
     useEffect(() => {
         if (comments.length === 0) return;
 
@@ -115,10 +108,8 @@ export default function Chang() {
                     username: randomComment.username,
                 };
 
-                // 댓글 추가
                 const updated = [...prev, newComment];
 
-                // 개별 제거 예약
                 setTimeout(() => {
                     setActiveComments((cur) =>
                         cur.filter((c) => c.id !== newComment.id)
@@ -133,13 +124,11 @@ export default function Chang() {
     }, [comments]);
 
     return (
-        <div className="relative w-screen h-screen  overflow-hidden">
-
-            {/* 배경 이미지 */}
+        <div className="relative w-screen h-screen overflow-hidden">
             <div className="absolute inset-0">
                 <Image
                     src="/hero/41.png"
-                    alt="chang"
+                    alt="nacco"
                     fill
                     className="object-cover opacity-30"
                 />
@@ -166,7 +155,6 @@ export default function Chang() {
                 onCommentAdded={(newComment) => {
                     console.log('Comment added via callback:', newComment);
                     setComments(prev => {
-                        // 중복 방지
                         const exists = prev.some(comment => comment.id === newComment.id);
                         if (exists) {
                             return prev;
@@ -175,7 +163,6 @@ export default function Chang() {
                     });
                 }}
             />
-
         </div>
     );
 }

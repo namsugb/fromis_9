@@ -1,6 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import { type EmailOtpType } from '@supabase/supabase-js'
 
 export async function GET(request: NextRequest) {
@@ -26,7 +25,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.redirect(`${origin}/?${errorParams.toString()}`)
     }
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // 이메일 확인을 위한 토큰 해시 처리 (PKCE flow)
     if (token_hash && type) {

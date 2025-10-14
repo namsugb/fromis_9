@@ -53,13 +53,9 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
             } else {
                 alert("댓글 추가에 실패했습니다.");
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Error adding comment:", error);
-            if (error.message === '로그인이 필요합니다.') {
-                alert("로그인이 필요합니다!");
-            } else {
-                alert("댓글 추가 중 오류가 발생했습니다.");
-            }
+            alert("댓글 추가에 실패했습니다.");
         }
     }
 

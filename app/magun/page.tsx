@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chat from "@/components/common/chat";
-import { getComments, subscribeToComments, unsubscribeFromComments, addComment } from "@/lib/comments";
+import { getComments, subscribeToComments, unsubscribeFromComments } from "@/lib/comments";
 import { MEMBERS, Comment, supabase } from "@/lib/supabase/supabase";
 
 type ActiveComment = {
@@ -15,7 +15,7 @@ type ActiveComment = {
     username: string;
 };
 
-export default function Chang() {
+export default function Magun() {
     const [activeComments, setActiveComments] = useState<ActiveComment[]>([]);
     const [comments, setComments] = useState<Comment[]>([]);
     const [subscription, setSubscription] = useState<ReturnType<typeof supabase.channel> | null>(null);
@@ -139,7 +139,7 @@ export default function Chang() {
             <div className="absolute inset-0">
                 <Image
                     src="/hero/21.png"
-                    alt="chang"
+                    alt="magun"
                     fill
                     className="object-cover opacity-30"
                 />
