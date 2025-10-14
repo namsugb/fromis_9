@@ -1,15 +1,1 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/about/page": "app/about/page.js",
-  "/api/fantube/route": "app/api/fantube/route.js",
-  "/auth/callback/route": "app/auth/callback/route.js",
-  "/chang/page": "app/chang/page.js",
-  "/discography/page": "app/discography/page.js",
-  "/fantube/page": "app/fantube/page.js",
-  "/hayeong/page": "app/hayeong/page.js",
-  "/heon/page": "app/heon/page.js",
-  "/magun/page": "app/magun/page.js",
-  "/music/page": "app/music/page.js",
-  "/nacco/page": "app/nacco/page.js",
-  "/page": "app/page.js"
-}
+{}
