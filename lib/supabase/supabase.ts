@@ -76,6 +76,6 @@ export const MEMBERS = {
 export type Member = typeof MEMBERS[keyof typeof MEMBERS]
 
 // 멤버별 테이블명 매핑
-export const getCommentsTableName = (member: Member): string => {
-    return `${member}_comments`
+export const getCommentsTableName = (memberName: string): string => {
+    return `${memberName}_comments`
 }

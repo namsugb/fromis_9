@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///C:/My_projects/services/fromis9/app/chang/page.tsx"],"sourcesContent":["export default function Chang() {\r\n    return (\r\n        <div>\r\n            <h1>Chang</h1>\r\n        </div>\r\n    )\r\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBACI,8OAAC;kBACG,cAAA,8OAAC;sBAAG;;;;;;;;;;;AAGhB","debugId":null}}]
-}

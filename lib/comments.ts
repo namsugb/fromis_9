@@ -1,8 +1,7 @@
-import { supabase, Comment, getCommentsTableName } from './supabase/supabase'
-import { MEMBERS } from './member'
+import { supabase, Comment, getCommentsTableName, MEMBERS } from './supabase/supabase'
 
 // 댓글 추가 (인증된 사용자만)
-export const addComment = async (member: keyof typeof MEMBERS, text: string, username: string): Promise<Comment | null> => {
+export const addComment = async (memberName: string, text: string, username: string): Promise<Comment | null> => {
     try {
         // 현재 사용자 세션 확인
         const { data: { session }, error: sessionError } = await supabase.auth.getSession()
@@ -12,7 +11,7 @@ export const addComment = async (member: keyof typeof MEMBERS, text: string, use
             throw new Error('로그인이 필요합니다.')
         }
 
-        const tableName = getCommentsTableName(member)
+        const tableName = getCommentsTableName(memberName)
         const { data, error } = await supabase
             .from(tableName)
             .insert({
@@ -36,9 +35,9 @@ export const addComment = async (member: keyof typeof MEMBERS, text: string, use
 }
 
 // 댓글 조회 (최신순)
-export const getComments = async (member: keyof typeof MEMBERS, limit: number = 50): Promise<Comment[]> => {
+export const getComments = async (memberName: string, limit: number = 50): Promise<Comment[]> => {
     try {
-        const tableName = getCommentsTableName(member)
+        const tableName = getCommentsTableName(memberName)
         const { data, error } = await supabase
             .from(tableName)
             .select('*')
@@ -58,8 +57,8 @@ export const getComments = async (member: keyof typeof MEMBERS, limit: number = 
 }
 
 // 실시간 댓글 구독
-export const subscribeToComments = (member: keyof typeof MEMBERS, callback: (comment: Comment) => void) => {
-    const tableName = getCommentsTableName(member)
+export const subscribeToComments = (memberName: string, callback: (comment: Comment) => void) => {
+    const tableName = getCommentsTableName(memberName)
     console.log(`Subscribing to ${tableName} changes...`)
 
     const channel = supabase
@@ -88,7 +87,7 @@ export const subscribeToComments = (member: keyof typeof MEMBERS, callback: (com
 }
 
 // 구독 해제
-export const unsubscribeFromComments = (subscription: any) => {
+export const unsubscribeFromComments = (subscription: ReturnType<typeof supabase.channel>) => {
     if (subscription) {
         supabase.removeChannel(subscription)
     }

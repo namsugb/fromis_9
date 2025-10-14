@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import Chat from "@/components/common/chat";
 import { getComments, subscribeToComments, unsubscribeFromComments, addComment } from "@/lib/comments";
-import { MEMBERS, Comment } from "@/lib/supabase/supabase";
+import { MEMBERS, Comment, supabase } from "@/lib/supabase/supabase";
 
 type ActiveComment = {
     id: number;
@@ -17,8 +18,8 @@ type ActiveComment = {
 export default function Chang() {
     const [activeComments, setActiveComments] = useState<ActiveComment[]>([]);
     const [comments, setComments] = useState<Comment[]>([]);
-    const [subscription, setSubscription] = useState<any>(null);
-    let i = 0;
+    const [subscription, setSubscription] = useState<ReturnType<typeof supabase.channel> | null>(null);
+    const iRef = useRef(0);
 
 
     const getNonOverlappingPosition = (
@@ -55,7 +56,7 @@ export default function Chang() {
     // Supabase에서 댓글 로드
     useEffect(() => {
         const loadComments = async () => {
-            const data = await getComments(MEMBERS.CHANG.name as any);
+            const data = await getComments(MEMBERS.CHANG.name);
             setComments(data);
         };
         loadComments();
@@ -64,7 +65,7 @@ export default function Chang() {
     // 실시간 댓글 구독
     useEffect(() => {
         console.log('Setting up realtime subscription...');
-        const sub = subscribeToComments(MEMBERS.CHANG.name as any, (newComment) => {
+        const sub = subscribeToComments(MEMBERS.CHANG.name, (newComment) => {
             console.log('Received new comment via subscription:', newComment);
             setComments(prev => {
                 // 중복 방지
@@ -90,12 +91,12 @@ export default function Chang() {
         if (comments.length === 0) return;
 
         const interval = setInterval(() => {
-            if (i >= comments.length) {
-                i = 0;
+            if (iRef.current >= comments.length) {
+                iRef.current = 0;
             }
 
-            const randomComment = comments[i];
-            i++;
+            const randomComment = comments[iRef.current];
+            iRef.current++;
 
             const randomDuration =
                 Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
@@ -136,10 +137,11 @@ export default function Chang() {
 
             {/* 배경 이미지 */}
             <div className="absolute inset-0">
-                <img
+                <Image
                     src="/hero/31.png"
                     alt="chang"
-                    className="w-full h-full object-cover opacity-30"
+                    fill
+                    className="object-cover opacity-30"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
             </div>

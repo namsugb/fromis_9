@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { addComment } from "@/lib/comments";
-import { Member, MEMBERS } from "@/lib/supabase/supabase";
+import { Member, Comment } from "@/lib/supabase/supabase";
 import { useAuth } from "@/lib/contexts/AuthContext";
 
 interface ChatProps {
     member?: Member;
-    onCommentAdded?: (comment: any) => void;
+    onCommentAdded?: (comment: Comment) => void;
 }
 
 export default function Chat({ member, onCommentAdded }: ChatProps) {
@@ -37,7 +37,7 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
         }
 
         try {
-            const result = await addComment(member?.name as any, message, user.user_metadata.preferred_username || user.user_metadata.name);
+            const result = await addComment(member?.name || '', message, user.user_metadata.preferred_username || user.user_metadata.name);
             if (result) {
                 setMessage("");
                 console.log("Comment added successfully:", result);
