@@ -14,7 +14,6 @@ var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
-g;
 function Hero() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -65,14 +64,14 @@ function Hero() {
                             className: "w-full h-full object-cover"
                         }, void 0, false, {
                             fileName: "[project]/components/home/hero.tsx",
-                            lineNumber: 32,
+                            lineNumber: 31,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-gray-500/10 group-hover:bg-gray-500/5 transition-colors duration-300"
                         }, void 0, false, {
                             fileName: "[project]/components/home/hero.tsx",
-                            lineNumber: 40,
+                            lineNumber: 39,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -81,28 +80,28 @@ function Hero() {
                                 className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full h-full -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out will-change-transform"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero.tsx",
-                                lineNumber: 44,
+                                lineNumber: 43,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/home/hero.tsx",
-                            lineNumber: 43,
+                            lineNumber: 42,
                             columnNumber: 25
                         }, this)
                     ]
                 }, index, true, {
                     fileName: "[project]/components/home/hero.tsx",
-                    lineNumber: 23,
+                    lineNumber: 22,
                     columnNumber: 21
                 }, this))
         }, void 0, false, {
             fileName: "[project]/components/home/hero.tsx",
-            lineNumber: 21,
+            lineNumber: 20,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/home/hero.tsx",
-        lineNumber: 20,
+        lineNumber: 19,
         columnNumber: 9
     }, this);
 }
