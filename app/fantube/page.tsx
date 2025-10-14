@@ -38,8 +38,8 @@ export default function Fantube() {
                 {loading ? <div className="text-center text-black">Loading...</div> : (
                     <div className="grid grid-cols-1 md:grid-cols-3  gap-6 text-black">
                         {youtube.map((item) => (
-                            <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                <div key={item.id} className=" aspect-[16/9]">
+                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer">
+                                <div className=" aspect-[16/9]">
                                     <img src={item.image} alt={item.name} className="w-full h-full object-fill rounded" />
                                     <div className="text-center text-black">{item.name}</div>
                                 </div>

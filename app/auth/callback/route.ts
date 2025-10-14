@@ -26,8 +26,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.redirect(`${origin}/?${errorParams.toString()}`)
     }
 
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
+    const supabase = createClient()
 
     // 이메일 확인을 위한 토큰 해시 처리 (PKCE flow)
     if (token_hash && type) {

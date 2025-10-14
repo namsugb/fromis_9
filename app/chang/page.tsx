@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chat from "@/components/common/chat";
-import { getComments, subscribeToComments, unsubscribeFromComments, } from "@/lib/comments";
+import { getComments, subscribeToComments, unsubscribeFromComments, addComment } from "@/lib/comments";
 import { MEMBERS, Comment, supabase } from "@/lib/supabase/supabase";
 
 type ActiveComment = {
@@ -148,7 +148,7 @@ export default function Chang() {
 
             {activeComments.map((comment, index) => (
                 <div
-                    key={index}
+                    key={comment.id}
                     className="absolute opacity-0"
                     style={{
                         left: comment.x,

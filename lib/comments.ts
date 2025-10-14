@@ -1,7 +1,7 @@
 import { supabase, Comment, getCommentsTableName, MEMBERS } from './supabase/supabase'
 
 // 댓글 추가 (인증된 사용자만)
-export const   = async (memberName: string, text: string, username: string): Promise<Comment | null> => {
+export const addComment = async (memberName: string, text: string, username: string): Promise<Comment | null> => {
     try {
         // 현재 사용자 세션 확인
         const { data: { session }, error: sessionError } = await supabase.auth.getSession()

@@ -50,7 +50,7 @@ export default function About() {
             <div className="w-64 h-full flex flex-col justify-center items-end pr-4 space-y-6">
                 {members.map((member, index) => (
                     <button
-                        key={index}
+                        key={member.name}
                         onClick={() => setSelectedMember(member)}
                         className={`text-xl font-bold tracking-wider transition-all duration-300 ${selectedMember.name === member.name
                             ? "text-black text-2xl"

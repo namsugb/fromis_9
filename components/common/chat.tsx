@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { } from "@/lib/comments";
+import { addComment } from "@/lib/comments";
 import { Member, Comment } from "@/lib/supabase/supabase";
 import { useAuth } from "@/lib/contexts/AuthContext";
 
@@ -37,7 +37,7 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
         }
 
         try {
-            const result = await (member?.name || '', message, user.user_metadata.preferred_username || user.user_metadata.name);
+            const result = await addComment(member?.name || '', message, user.user_metadata.preferred_username || user.user_metadata.name);
             if (result) {
                 setMessage("");
                 console.log("Comment added successfully:", result);
