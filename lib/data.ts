@@ -4,11 +4,11 @@ export const DATA = {
     //     "url": "https://www.youtube.com/@%EB%82%98%EC%9E%98%ED%95%9C%EB%8B%A4%ED%95%B4%EC%A7%9C%EB%82%98",
     //     "image": "/youtube/1.png",
     // },
-    // "2": {
-    //     "name": "이채영이 제일좋아",
-    //     "url": "https://www.youtube.com/@favoritechaeng",
-    //     "image": "/youtube/2.png",
-    // },
+    "2": {
+        "name": "이채영이 제일좋아",
+        "url": "https://www.youtube.com/@favoritechaeng",
+        "image": "/youtube/2.png",
+    },
     // "3": {
     //     "name": "져니를 막아야해",
     //     "url": "https://www.youtube.com/@%EC%A0%B8%EB%8B%88%EB%A5%BC%EB%A7%89%EC%95%84%EC%95%BC%ED%95%B4",
