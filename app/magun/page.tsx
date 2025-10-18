@@ -149,15 +149,15 @@ export default function Magun() {
             {activeComments.map((comment) => (
                 <div
                     key={comment.id}
-                    className="absolute opacity-0"
+                    className="absolute opacity-0 max-w-[80vw] md:max-w-md"
                     style={{
                         left: comment.x,
                         top: comment.y,
                         animation: `fadeInOut ${comment.duration}ms ease-in-out forwards`,
                     }}
                 >
-                    <p className="text-lg text-white">{comment.text}</p>
-                    <p className="text-sm text-white text-right">{comment.username}</p>
+                    <p className="text-sm sm:text-base md:text-lg text-white break-words">{comment.text}</p>
+                    <p className="text-xs sm:text-sm text-white text-right">{comment.username}</p>
                 </div>
             ))}
 

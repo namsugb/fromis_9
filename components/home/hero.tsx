@@ -13,15 +13,17 @@ export default function Hero() {
         { normal: "/hero/12.png", hover: "/hero/11.png", link: "/hayeong" },
         { normal: "/hero/41.png", hover: "/hero/42.png", link: "/nacco" },
         { normal: "/hero/31.png", hover: "/hero/32.png", link: "/chang" },
+        { normal: "/hero/logo.png", hover: "/hero/logo.png", link: "/" },
+
     ];
 
     return (
         <div className="h-[100vh] w-full">
-            <div className="grid grid-cols-5 h-full">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-full">
                 {imagePairs.map((pair, index) => (
                     <div
                         key={index}
-                        className="bg-gray-500 border-r border-white relative group cursor-pointer "
+                        className={`bg-gray-500 relative group cursor-pointer ${index === 5 ? 'md:hidden' : ''}`}
                         onClick={() => {
                             if (pair.link) {
                                 router.push(pair.link);

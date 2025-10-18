@@ -61,9 +61,9 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
 
     if (loading) {
         return (
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-1/3 py-4">
-                <div className="bg-white rounded-lg p-4 text-center">
-                    <p className="text-gray-600">로딩 중...</p>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 py-2 md:py-4 px-4">
+                <div className="bg-white rounded-lg p-3 md:p-4 text-center">
+                    <p className="text-gray-600 text-sm md:text-base">로딩 중...</p>
                 </div>
             </div>
         );
@@ -71,12 +71,12 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
 
     if (!user) {
         return (
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-1/3 py-4">
-                <div className="bg-white rounded-lg p-4 text-center">
-                    <p className="text-gray-600 mb-2">댓글을 작성하려면 로그인이 필요합니다</p>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 py-2 md:py-4 px-4">
+                <div className="bg-white rounded-lg p-3 md:p-4 text-center">
+                    <p className="text-gray-600 text-xs sm:text-sm md:text-base mb-2">댓글을 작성하려면 로그인이 필요합니다</p>
                     <button
                         onClick={signIn}
-                        className="bg-yellow-400 text-black rounded-lg px-4 py-2 hover:bg-yellow-500"
+                        className="bg-yellow-400 text-black rounded-lg px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base hover:bg-yellow-500"
                     >
                         카카오 로그인
                     </button>
@@ -90,27 +90,27 @@ export default function Chat({ member, onCommentAdded }: ChatProps) {
             {/* 성공 팝업 */}
             {showSuccessPopup && (
                 <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
-                    <div className="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="bg-green-500 text-white px-4 md:px-6 py-3 md:py-4 rounded-lg shadow-lg flex items-center gap-2 md:gap-3">
+                        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="font-medium">댓글이 성공적으로 작성되었습니다!</span>
+                        <span className="font-medium text-sm md:text-base">댓글이 성공적으로 작성되었습니다!</span>
                     </div>
                 </div>
             )}
 
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-1/3 py-4">
-                <form className="flex items-center justify-center gap-2" onSubmit={handleSubmit}>
-                    <div className="w-5/6">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 py-2 md:py-4 px-4">
+                <form className="flex items-center justify-center gap-1.5 md:gap-2" onSubmit={handleSubmit}>
+                    <div className="flex-1">
                         <input
                             type="text"
-                            className="bg-white w-full rounded-lg p-2 border-2 text-black focus:outline-none"
+                            className="bg-white w-full rounded-lg p-2 md:p-2.5 border-2 text-black text-sm md:text-base focus:outline-none"
                             placeholder={member?.chat}
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="bg-black text-white rounded-lg p-2 hover:bg-black/50 w-1/6">Send</button>
+                    <button type="submit" className="bg-black text-white rounded-lg px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base hover:bg-black/50 whitespace-nowrap">Send</button>
                 </form>
             </div>
         </>
