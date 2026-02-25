@@ -83,7 +83,7 @@ export default function Fantube() {
                 <a href="https://www.instagram.com/areyounam/" target="_blank" rel="noopener noreferrer">
                     <div className="flex items-center justify-center mt-2">
                         <Instagram className="w-3 h-3 sm:w-4 sm:h-4 inline-block mr-1 text-purple-500" />
-                        <p className="text-purple-500 text-sm sm:text-base">areyounam</p>
+                        <p className="text-purple-500 text-sm sm:text-base">areyounam_</p>
                     </div>
                 </a>
 
