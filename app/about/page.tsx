@@ -45,7 +45,7 @@ export default function About() {
     const [selectedMember, setSelectedMember] = useState(members[0])
 
     return (
-        <div className="fixed inset-0 w-screen h-screen flex flex-col md:flex-row justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-auto md:overflow-hidden">
+        <div className="fixed inset-0 w-screen h-screen flex flex-col md:flex-row justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-auto md:overflow-hidden pb-24 md:pb-0">
             {/* 좌측 멤버 리스트 */}
             <div className="w-full md:w-64 h-auto md:h-full flex flex-row md:flex-col justify-center md:justify-center items-center md:items-end pt-16 md:pt-0 pr-0 md:pr-4 space-x-2 sm:space-x-3 md:space-x-0 md:space-y-6 px-2 sm:px-4 md:px-0">
                 {members.map((member) => (

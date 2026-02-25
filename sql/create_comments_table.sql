@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS comments (
     id BIGSERIAL PRIMARY KEY,
     text TEXT NOT NULL,
-    user VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
     member VARCHAR(20) NOT NULL, -- fromis9 멤버 이름 (chang, hayeong, heon, magun, nacco)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -23,7 +23,7 @@ CREATE POLICY "Anyone can insert comments" ON comments
     FOR INSERT WITH CHECK (true);
 
 -- 샘플 데이터 삽입 (선택사항)
-INSERT INTO comments (text, user, member) VALUES
+INSERT INTO comments (text, username, member) VALUES
     ('노래 너무 좋아요! 💖', 'zllzl', 'chang'),
     ('오늘도 응원합니다 ✨', 'Asdf', 'chang'),
     ('콘서트 꼭 갈게요!!! 🔥', 'Ass', 'chang'),

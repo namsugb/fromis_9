@@ -1,4 +1,6 @@
-import { supabase, Comment, getCommentsTableName, MEMBERS } from './supabase/supabase'
+import { supabase, Comment } from './supabase/supabase'
+
+const COMMENTS_TABLE = 'comments'
 
 // 댓글 추가 (인증된 사용자만)
 export const addComment = async (memberName: string, text: string, username: string): Promise<Comment | null> => {
@@ -11,13 +13,14 @@ export const addComment = async (memberName: string, text: string, username: str
             throw new Error('로그인이 필요합니다.')
         }
 
-        const tableName = getCommentsTableName(memberName)
+        const displayName = username || session.user.user_metadata?.nickname || session.user.email?.split('@')[0] || '익명'
+
         const { data, error } = await supabase
-            .from(tableName)
+            .from(COMMENTS_TABLE)
             .insert({
                 text,
-                username: username || session.user.email?.split('@')[0] || '익명',
-                user_id: session.user.id // 사용자 ID 추가
+                username: displayName,
+                member: memberName
             })
             .select()
             .single()
@@ -37,10 +40,10 @@ export const addComment = async (memberName: string, text: string, username: str
 // 댓글 조회 (최신순)
 export const getComments = async (memberName: string, limit: number = 50): Promise<Comment[]> => {
     try {
-        const tableName = getCommentsTableName(memberName)
         const { data, error } = await supabase
-            .from(tableName)
+            .from(COMMENTS_TABLE)
             .select('*')
+            .eq('member', memberName)
             .order('created_at', { ascending: false })
             .limit(limit)
 
@@ -58,16 +61,17 @@ export const getComments = async (memberName: string, limit: number = 50): Promi
 
 // 실시간 댓글 구독
 export const subscribeToComments = (memberName: string, callback: (comment: Comment) => void) => {
-    const tableName = getCommentsTableName(memberName)
-    console.log(`Subscribing to ${tableName} changes...`)
+    const channelName = `comments_${memberName}_changes`
+    console.log(`Subscribing to ${COMMENTS_TABLE} (member=${memberName}) changes...`)
 
     const channel = supabase
-        .channel(`${tableName}_changes`)
+        .channel(channelName)
         .on('postgres_changes',
             {
                 event: 'INSERT',
                 schema: 'public',
-                table: tableName
+                table: COMMENTS_TABLE,
+                filter: `member=eq.${memberName}`
             },
             (payload) => {
                 console.log('New comment received:', payload)
@@ -75,11 +79,11 @@ export const subscribeToComments = (memberName: string, callback: (comment: Comm
             }
         )
         .subscribe((status) => {
-            console.log(`Subscription status for ${tableName}:`, status)
+            console.log(`Subscription status for ${COMMENTS_TABLE} (member=${memberName}):`, status)
             if (status === 'SUBSCRIBED') {
-                console.log(`Successfully subscribed to ${tableName}`)
+                console.log(`Successfully subscribed to ${COMMENTS_TABLE}`)
             } else if (status === 'CHANNEL_ERROR') {
-                console.error(`Failed to subscribe to ${tableName}`)
+                console.error(`Failed to subscribe to ${COMMENTS_TABLE}`)
             }
         })
 

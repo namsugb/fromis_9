@@ -22,7 +22,7 @@ export default function Hero() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-full">
                 {imagePairs.map((pair, index) => (
                     <div
-                        key={index}
+                        key={pair.normal}
                         className={`bg-gray-500 relative group cursor-pointer ${index === 5 ? 'md:hidden' : ''}`}
                         onClick={() => {
                             if (pair.link) {
