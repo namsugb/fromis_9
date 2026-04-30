@@ -28,13 +28,13 @@ export default function Header() {
                         </Link>
                     </div>
                     <div className="h-full flex justify-end items-center gap-2 sm:gap-3 md:gap-4 lg:gap-8">
-                        <Link href="https://www.youtube.com/@fromis9_official" target="_blank" className="hidden sm:block">
+                        <Link href="https://www.youtube.com/@fromis9_official" target="_blank">
                             <Youtube className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 hover:text-red-500 transition-colors cursor-pointer" />
                         </Link>
-                        <Link href="https://www.instagram.com/officialfromis_9/" target="_blank" className="hidden sm:block">
+                        <Link href="https://www.instagram.com/officialfromis_9/" target="_blank">
                             <Instagram className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 hover:text-pink-500 transition-colors cursor-pointer" />
                         </Link>
-                        <Link href="https://x.com/realfromis_9" target="_blank" className="hidden md:block">
+                        <Link href="https://x.com/realfromis_9" target="_blank">
                             <svg
                                 className="w-6 h-6 lg:w-8 lg:h-8 hover:text-black transition-colors cursor-pointer"
                                 viewBox="0 0 24 24"
