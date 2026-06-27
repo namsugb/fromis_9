@@ -104,7 +104,7 @@ export default function Hero() {
                                 ? "(min-width: 768px) 42vw, 100vw"
                                 : "(min-width: 768px) 34vw, (min-width: 640px) 50vw, 50vw"
                             }
-                            className="object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            className={`${member.name === "NAGYUNG" ? "object-cover object-center" : "object-contain"} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-white/5" />

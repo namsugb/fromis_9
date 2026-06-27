@@ -4,14 +4,20 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
+    setShowToast(true);
+    const toastTimer = window.setTimeout(() => setShowToast(false), 3500);
+
     // 이전에 팝업을 본 적이 있는지 확인
     const hasSeenPopup = localStorage.getItem('hasSeenDisclaimer');
 
     if (!hasSeenPopup) {
       setShowPopup(true);
     }
+
+    return () => window.clearTimeout(toastTimer);
   }, []);
 
   const handleClosePopup = () => {
@@ -22,6 +28,16 @@ export default function Home() {
   return (
     <div className="relative min-h-screen">
       <Hero />
+
+      {showToast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed left-1/2 top-5 z-[10000] -translate-x-1/2 whitespace-nowrap rounded-full bg-black/85 px-5 py-3 text-sm font-semibold text-white shadow-xl backdrop-blur-sm sm:text-base"
+        >
+          멤버들을 클릭해서 응원을 남겨보세요!
+        </div>
+      )}
 
       {/* 팝업 */}
       {showPopup && (
