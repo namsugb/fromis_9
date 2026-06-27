@@ -25,17 +25,17 @@ export default function Home() {
 
       {/* 팝업 */}
       {showPopup && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full mx-4 shadow-2xl">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 text-center">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-md rounded-2xl bg-white p-5 shadow-2xl sm:p-8">
+            <h2 className="mb-3 text-center text-xl font-bold text-gray-800 sm:mb-4 sm:text-2xl">
               알림
             </h2>
-            <p className="text-base sm:text-lg text-gray-700 mb-5 sm:mb-6 text-center">
+            <p className="mb-5 whitespace-nowrap text-center text-[clamp(0.65rem,3.2vw,1.125rem)] tracking-tight text-gray-700 sm:mb-6">
               이 사이트는 프로미스나인 공식 계정이 <span className="text-pink-500">아닙니다</span>
             </p>
             <button
               onClick={handleClosePopup}
-              className="w-full bg-black text-white py-2.5 sm:py-3 rounded-lg font-bold text-sm sm:text-base hover:bg-gray-800 transition-colors"
+              className="w-full rounded-lg bg-black py-2.5 text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:py-3 sm:text-base"
             >
               확인
             </button>

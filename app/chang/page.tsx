@@ -4,7 +4,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chat from "@/components/common/chat";
 import { getComments, subscribeToComments, unsubscribeFromComments } from "@/lib/comments";
-import { MEMBERS, Comment, supabase } from "@/lib/supabase/supabase";
+import type { RealtimeChannel } from "@supabase/supabase-js";
+import { MEMBERS, Comment } from "@/lib/members";
 
 type ActiveComment = {
     id: number;
@@ -18,7 +19,7 @@ type ActiveComment = {
 export default function Chang() {
     const [activeComments, setActiveComments] = useState<ActiveComment[]>([]);
     const [comments, setComments] = useState<Comment[]>([]);
-    const [subscription, setSubscription] = useState<ReturnType<typeof supabase.channel> | null>(null);
+    const [subscription, setSubscription] = useState<RealtimeChannel | null>(null);
     const iRef = useRef(0);
 
 

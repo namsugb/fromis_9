@@ -1,4 +1,8 @@
-import { supabase, Comment } from './supabase/supabase'
+import type { RealtimeChannel } from '@supabase/supabase-js'
+import { createClient } from './supabase/client'
+import type { Comment } from './members'
+
+const supabase = createClient()
 
 const COMMENTS_TABLE = 'comments'
 
@@ -91,7 +95,7 @@ export const subscribeToComments = (memberName: string, callback: (comment: Comm
 }
 
 // 구독 해제
-export const unsubscribeFromComments = (subscription: ReturnType<typeof supabase.channel>) => {
+export const unsubscribeFromComments = (subscription: RealtimeChannel) => {
     if (subscription) {
         supabase.removeChannel(subscription)
     }

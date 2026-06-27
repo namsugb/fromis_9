@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { addComment } from "@/lib/comments";
-import { Member, Comment } from "@/lib/supabase/supabase";
+import { Member, Comment } from "@/lib/members";
 import { useAuth } from "@/lib/contexts/AuthContext";
 
 interface ChatProps {

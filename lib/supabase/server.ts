@@ -1,5 +1,5 @@
 // lib/supabase/server.ts
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 
@@ -16,7 +16,7 @@ export async function createClient() {
     const cookieStore = await cookies();
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
 
     // createServerClient는 SSR 환경에서 Supabase 인증 세션을 유지하도록 도와줍니다.
     return createServerClient(supabaseUrl, supabaseKey, {
@@ -25,7 +25,7 @@ export async function createClient() {
                 // 현재 요청의 모든 쿠키를 가져옵니다.
                 return cookieStore.getAll();
             },
-            setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+            setAll(cookiesToSet) {
                 try {
                     // 쿠키를 반복문으로 설정합니다.
                     cookiesToSet.forEach(({ name, value, options }) => {
